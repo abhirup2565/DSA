@@ -15,21 +15,24 @@ public class MaxSumSub {
         System.out.println(maximumSumSubarray(arr, k));
     }
 public static int maximumSumSubarray(int[] arr, int k) {
-        // Code here
-       int max = 0;
-        for(int i=0;i<=arr.length-k;i++)
-        {
-            int sum=0;
-            for(int j=i;j<i+k;j++)
-            {
-                sum+=arr[j];
-            }
-            if(max<sum)
-            {
-                max=sum;
-            }
-        }
-        return max;
+       int windowSum=0;
+        int sum = 0;
+      for(int i=0;i<k;i++)
+      {
+          windowSum+=arr[i];
+          sum= windowSum;
+      }
+      int start=1;
+      while(start<=arr.length-k)
+      {
+          windowSum+= arr[start+k-1] - arr[start-1];
+          if (sum<windowSum)
+          {
+              sum=windowSum;
+          }
+          start++;
+      }
+      return sum;
     }
 
 
@@ -37,8 +40,22 @@ public static int maximumSumSubarray(int[] arr, int k) {
 
 
 
+ 
 
-
-
+ // O(n^2)
+    //    int max = 0;
+    //     for(int i=0;i<=arr.length-k;i++)
+    //     {
+    //         int sum=0;
+    //         for(int j=i;j<i+k;j++)
+    //         {
+    //             sum+=arr[j];
+    //         }
+    //         if(max<sum)
+    //         {
+    //             max=sum;
+    //         }
+    //     }
+    //     return max;
 
 

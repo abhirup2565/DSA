@@ -20,5 +20,39 @@ public class TrappingRainwater {
             }
         }
         System.out.println(mid+" value is "+arr[mid]);
+
+        int max_arr[] = new int[n];
+        int left=0;
+        int right=n-1;
+        int rmax=arr[n-1];
+        int lmax =arr[0];
+        max_arr[mid]=arr[mid];
+        while(left<mid||right>mid)
+        {
+            if(left<mid)
+            {
+                if(lmax<arr[left])
+                {
+                    lmax=arr[left];
+                }
+                max_arr[left]=lmax;
+            }
+
+            if(right>mid)
+            {
+                if(rmax<arr[right])
+                {
+                    rmax=arr[right];
+                }
+                max_arr[right]=rmax;
+            }
+            right--;
+            left++;
+        }
+        for(int k:max_arr)
+        {
+            System.out.println(k);
+        }
+        
         }
     }

@@ -22,6 +22,7 @@ public class TrappingRainwater {
         System.out.println(mid+" value is "+arr[mid]);
 
         int max_arr[] = new int[n];
+        int rainTrapped=0;
         int left=0;
         int right=n-1;
         int rmax=arr[n-1];
@@ -49,10 +50,14 @@ public class TrappingRainwater {
             right--;
             left++;
         }
+        for(int i=0;i<n;i++)
+        {
+            max_arr[i]=max_arr[i]-arr[i];
+        }
         for(int k:max_arr)
         {
-            System.out.println(k);
+            rainTrapped+=k;
         }
-        
+        System.out.println(rainTrapped);
         }
     }

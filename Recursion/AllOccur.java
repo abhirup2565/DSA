@@ -11,19 +11,31 @@ public class AllOccur{
             arr[i]=sc.nextInt();
         }
         int target=3;
-        arrprint(arr,n-1,target);
-        
+        int fsf=0;
+        int store=0
+        int [] ans= arrprint(arr,n-1,target,fsf,store);
+        for(int i:ans)
+        {
+            System.out.print(i);
+        }
     }
-    public static void arrprint(int [] arr,int n,int target)
+    public static int[] arrprint(int [] arr,int n,int target,int fsf,int store)
     {
         if(n==-1)
         {
-            return;
+            int [] pos =new int[fsf];
+            return pos;
         }
-        arrprint(arr, n-1, target);
         if(arr[n]==target)
-            {
-                System.out.print(n+" ,");
-            }
+        {
+            fsf++;
+        }
+        int[] pos = arrprint(arr,n-1,target,fsf,store);
+        if(arr[n]==target)
+        {
+            pos[fsf-1]=n;
+            fsf--;
+        }
+        return pos;
     }
 }

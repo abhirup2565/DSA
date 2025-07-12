@@ -12,14 +12,14 @@ public class AllOccur{
         }
         int target=3;
         int fsf=0;
-        int store=0
-        int [] ans= arrprint(arr,n-1,target,fsf,store);
+        
+        int [] ans= arrprint(arr,n-1,target,fsf);
         for(int i:ans)
         {
             System.out.print(i);
         }
     }
-    public static int[] arrprint(int [] arr,int n,int target,int fsf,int store)
+    public static int[] arrprint(int [] arr,int n,int target,int fsf)
     {
         if(n==-1)
         {
@@ -30,7 +30,7 @@ public class AllOccur{
         {
             fsf++;
         }
-        int[] pos = arrprint(arr,n-1,target,fsf,store);
+        int[] pos = arrprint(arr,n-1,target,fsf);
         if(arr[n]==target)
         {
             pos[fsf-1]=n;

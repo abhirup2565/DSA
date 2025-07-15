@@ -14,42 +14,37 @@ public class MazeJump{
     {
         if(sr==dr && sc==dc)
         {
-            ArrayList<String> bres =new ArrayList<>();
+            ArrayList<String> bres = new ArrayList<>();
             bres.add("");
             return bres;
         }
-        else if(sr>=dr || sc>=dc)
+        ArrayList <String> paths= new ArrayList<>();
+        //horizontal moves
+        for(int h=1;h<=dc-sc;h++)
         {
-            ArrayList<String> bres =new ArrayList<>();
-            return bres;
+            ArrayList<String> hpaths= maze(sr,sc+h,dr,dc);
+            for(String hpath: hpaths)
+            {
+                paths.add("h"+h+hpath);
+            }
         }
-        ArrayList<String>  vpaths =  new ArrayList<>();
-        ArrayList<String> hpaths = new ArrayList<>();
-        ArrayList<String> dpaths = new ArrayList<>();
-        if(sc<dc&&sr<dr)
+        //verical moves
+        for(int v =1;v<=dr-sr;v++)
         {
-            dpaths=maze(sr+1,sc+1,dr,dc);
+            ArrayList<String> vpaths= maze(sr+v,sc,dr,dc);
+            for(String vpath: vpaths)
+            {
+                paths.add("v"+v+vpath);
+            }
         }
-        if(sr<dr)
+        // diagonal
+        for(int d =1;d<=dr-sr && d<=dc-sc; d++)
         {
-            vpaths=maze(sr+1,sc,dr,dc);
-        }
-        if(sc<dc)
-        {
-            hpaths=maze(sr,sc+1,dr,dc);
-        }
-        ArrayList<String> paths = new ArrayList<>();
-        for(String hpath:hpaths)
-        {
-            paths.add("h"+hpath);
-        }
-        for(String vpath:vpaths)
-        {
-            paths.add("v"+vpath);
-        }
-        for(String dpath:dpaths)
-        {
-            paths.add("d"+dpath);
+            ArrayList<String> dpaths= maze(sr+d,sc+d,dr,dc);
+            for(String dpath: dpaths)
+            {
+                paths.add("d"+d+dpath);
+            }
         }
 
         return paths;

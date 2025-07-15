@@ -5,7 +5,6 @@ public class StairsPath{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of stairs ");
         int n = sc.nextInt();
-        // String [] steps ={"1","2","3"};
         ArrayList<String> res =paths(n);
         System.out.println(res);
         

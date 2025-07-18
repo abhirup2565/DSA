@@ -1,5 +1,4 @@
-import java.util.*;
-public class PrintMaze{
+public class PrintMazeJump{
     public static void main(String [] args)
     {
         int sr=0,sc=0;
@@ -14,14 +13,20 @@ public class PrintMaze{
             return;
         }
         //moving horizontal
-        if(cc<dc)
+        for(int i=1;i<=dc-cc;i++)
         {
-            printpaths(cr,cc+1,dr,dc, path+"H");
+            printpaths(cr,cc+i,dr,dc, path+"H"+i);
         }
+        
         //moving verical
-        if(cr<dr)
+        for(int i=1;i<=dr-cr;i++)
         {
-            printpaths(cr+1,cc,dr,dc, path+"V");
+            printpaths(cr+i,cc,dr,dc, path+"V"+i);
+        }
+        //moving diagonal
+        for(int i=1,j=1;i<=dr-cr&&j<=dc-cc;i++,j++)
+        {
+            printpaths(cr+i,cc+j,dr,dc, path+"D"+i);
         }
     }
 }

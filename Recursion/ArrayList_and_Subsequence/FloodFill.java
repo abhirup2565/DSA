@@ -12,7 +12,7 @@ public class FloodFill {
         //         arr[i][j]=sc.nextInt();
         //     }
         // }
-        int [][] arr={{0,0,0},{0,0,0},{0,0,0}};
+        int [][] arr={{0,0,0,0},{0,1,0,0},{0,0,0,0}};
         FloodPaths(arr, 0, 0, "");
     }
     public static void FloodPaths(int [] [] maze,int current_row ,int current_col,String path)
@@ -27,16 +27,19 @@ public class FloodFill {
         {
             if(maze[current_row-1][current_col]!=1)
             {
+                maze[current_row][current_col]=1;
                 FloodPaths(maze, current_row-1, current_col, path+"up,");
+                maze[current_row][current_col]=0;
             }
         }
-        
         //right
         if(current_col<maze[0].length-1)
         {
            if(maze[current_row][current_col+1]!=1)
             {
+                maze[current_row][current_col]=1;
                 FloodPaths(maze, current_row, current_col+1, path+"R,");
+                maze[current_row][current_col]=0;
             }
         }
         //down
@@ -44,15 +47,19 @@ public class FloodFill {
         {
             if(maze[current_row+1][current_col]!=1)
         {
+            maze[current_row][current_col]=1;
             FloodPaths(maze, current_row+1, current_col, path+"dw,");
+            maze[current_row][current_col]=0;
         }
         }
         //left
-        if(current_col>=0)
+        if(current_col>0)
         {
             if(maze[current_row][current_col-1]!=1)
             {
+                maze[current_row][current_col]=1;
                 FloodPaths(maze, current_row, current_col-1, path+"L,");
+                maze[current_row][current_col]=0;
             }
         }
         

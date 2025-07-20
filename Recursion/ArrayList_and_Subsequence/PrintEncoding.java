@@ -30,7 +30,6 @@ public class PrintEncoding {
         int chr2 = input.charAt(1)-'0';
         int chr = chr1*10+chr2;
         char coder = (char)((int)'a'+chr-1);
-        // System.out.println("coder is "+coder+" chr is"+chr);
         String rosr = input.substring(2);
         encoding(rosr, ans+coder);
     }

@@ -22,14 +22,15 @@ public class FloodFill {
             System.out.println(path);
             return;
         }
+        maze[current_row][current_col]=1;
         //up
         if(current_row>0)
         {
             if(maze[current_row-1][current_col]!=1)
             {
-                maze[current_row][current_col]=1;
+                
                 FloodPaths(maze, current_row-1, current_col, path+"up,");
-                maze[current_row][current_col]=0;
+
             }
         }
         //right
@@ -37,9 +38,9 @@ public class FloodFill {
         {
            if(maze[current_row][current_col+1]!=1)
             {
-                maze[current_row][current_col]=1;
+                
                 FloodPaths(maze, current_row, current_col+1, path+"R,");
-                maze[current_row][current_col]=0;
+
             }
         }
         //down
@@ -47,9 +48,8 @@ public class FloodFill {
         {
             if(maze[current_row+1][current_col]!=1)
         {
-            maze[current_row][current_col]=1;
+            
             FloodPaths(maze, current_row+1, current_col, path+"dw,");
-            maze[current_row][current_col]=0;
         }
         }
         //left
@@ -57,11 +57,11 @@ public class FloodFill {
         {
             if(maze[current_row][current_col-1]!=1)
             {
-                maze[current_row][current_col]=1;
+                
                 FloodPaths(maze, current_row, current_col-1, path+"L,");
-                maze[current_row][current_col]=0;
+
             }
         }
-        
+        maze[current_row][current_col]=0;
     }
 }

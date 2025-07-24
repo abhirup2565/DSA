@@ -1,89 +1,56 @@
+import java.util.*;
+
 public class Queens {
     public static void main(String [] args)
     {
-        int [] [] board =new int[4][4];
-        int targetQueen=3;
-        path(board, 0, 0, 0, targetQueen, "");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("chess board size");
+        int n = sc.nextInt();
+        int [] [] board =new int[n][n];
+        path(board,"",0);
     }
-    public static void path(int[][] board,int currentQueen,int current_row,int current_col,int targetQueen,String postions)
+
+    public static void path(int[][] board ,String postions,int row)
     {
-        if(currentQueen==targetQueen)
+        if(row==board.length)
         {
-            System.out.println(postions);
+            System.out.println(postions+".");
             return;
         }
-
-        fill(board, current_row, current_col, 1);
-        for(int i=0;i<board.length;i++)
+        for(int col=0;col<board[0].length;col++)
         {
-            for(int j=0;j<board[0].length;j++)
+            if(safePos(board, row, col))
             {
-                if(board[i][j]!=1)
-                {
-                    current_row=i;
-                    current_col=j;
-                    path(board, currentQueen+1, current_row, current_col, targetQueen, postions+i+"-"+j+",");
-                }
+                board[row][col]=1;
+                path(board, postions+row+"-"+col+",", row+1);
+                board[row][col]=0;
             }
         }
-        fill(board, current_row, current_col, 0);
     }
-
-
-   public static int[][] fill(int[][] board,int current_row,int current_col,int value)
+    public static boolean safePos(int [][]board,int row,int col)
     {
-        board[current_row][current_col]=1;
-        //fill horizontal
-        int h=0;
-        while(h<board[0].length)
+        for(int i=row-1,j=col;i>=0;i--)
         {
-        board[current_row][h]=value;
-        h++;
+            if(board[i][j]==1)
+            {
+                return false;
+            }
+            
         }
-        //fill vertical
-        int v=0;
-        while(v<board.length)
+        for(int i=row-1, j=col-1;i>=0&&j>=0; i--, j--)
         {
-        board[v][current_col]=value;
-        v++;
+            if(board[i][j]==1)
+            {
+                return false;
+            }
         }
-        //diagonals
-        int r=current_row-1;
-        int lc =current_col-1;
-        int rc =current_col+1;
-        //downward diagonal
-        while(r>=0)
+        for(int i=row-1,j=col+1;i>=0&&j<board.length;i--,j++)
         {
-            if(lc>=0)
+            if(board[i][j]==1)
             {
-                board[r][lc]=value;
+                return false;
             }
-            if(rc<board[0].length)
-            {
-                board[r][rc]=value;
-            }
-            rc++;
-            lc--;
-            r--;
         }
-        //upward diagonal
-        r=current_row+1;
-        lc =current_col-1;
-        rc =current_col+1;
-        while(r<board.length)
-        {
-            if(lc>=0)
-            {
-                board[r][lc]=value;
-            }
-            if(rc<board[0].length)
-            {
-                board[r][rc]=value;
-            }
-            rc++;
-            lc--;
-            r++;
-        }
-        return board;
+        return true;
     }
 }

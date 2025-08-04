@@ -43,6 +43,7 @@ class InfixConversion {
                         process(op,post,"post");
                     }
                     operation.push(ch);
+                    
                 }
             } 
             else

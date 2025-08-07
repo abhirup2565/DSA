@@ -23,8 +23,7 @@ public class abbreviation {
         }
         char ch = input.charAt(0);
         String ros = input.substring(1);
-        computeAbbreviation(ros,abbre,++counter);
-        counter--;
+        computeAbbreviation(ros,abbre,counter+1);
         if(counter!=0)
         {
         computeAbbreviation(ros,abbre+counter+ch,0);

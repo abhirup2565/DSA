@@ -27,11 +27,7 @@ public class GoldMine {
     }
     public static int goldrush(int [][]map,int row,int col)
     {
-        int northGold=0;
-        int southGold=0;
-        int eastGold = 0;
-        int westGold=0;
-
+        int northGold=0,southGold=0,eastGold = 0,westGold=0;
         if(map[row][col] == 0)
         {
             return 0;

@@ -48,6 +48,7 @@ class CrossWord {
             }
         }
     }
+    
     public static boolean canPlaceHorizontal(char [][] board,String word,int i,int j)
     {
         if(j-1>=0 && board[i][j-1]!='+')

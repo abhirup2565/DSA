@@ -25,8 +25,6 @@ public class customGraph {
             graph[v1].add(new Edge(v1, v2, wt));
             graph[v2].add(new Edge(v2, v1, wt));
         }
-
-        print(graph);
     }
 public static class Edge 
 {
@@ -40,18 +38,6 @@ public static class Edge
         this.nbr=nbr;
         this.wt=wt;
     }    
-}
-
-public static void print(ArrayList<Edge>[] graph)
-{
-    for(int i=0; i<graph.length;i++)
-    {
-        for(int j=0; j<graph[i].size();j++)
-        {
-            System.out.print("Vertex: "+graph[i].get(j).src+", Neighbour: "+graph[i].get(j).nbr+", Weights:"+graph[i].get(j).wt);
-        }
-        System.out.println();
-    }
 }
 }
  

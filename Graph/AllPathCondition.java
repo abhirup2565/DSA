@@ -1,6 +1,11 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 public class AllPathCondition {
+    static PriorityQueue <Pair> pq= new PriorityQueue<>();
+    static int min = Integer.MAX_VALUE;
+    static int max = Integer.MIN_VALUE;
+    static int ceilthreshold = Integer.MAX_VALUE;
+    static int floorthreshold = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of vertices");
@@ -29,16 +34,11 @@ public class AllPathCondition {
         int src = sc.nextInt();
         System.out.println("Enter the destination");
         int dst = sc.nextInt();
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        int ceilthreshold = Integer.MAX_VALUE;
-        int floorthreshold = Integer.MAX_VALUE;
         boolean[]visited = new boolean[verices];
-        int weight = 0;
-        haspath(graph,src,dst,visited,"",min,max,ceilthreshold,floorthreshold);
+        haspath(graph,src,dst,visited,"",0);
     }
 
-        public static void haspath(ArrayList<Edge>[]graph,int src,int dst,boolean[]visited,String ans,int min,int max,int ceilthreshold,int floorthreshold,int weight)
+        public static void haspath(ArrayList<Edge>[]graph,int src,int dst,boolean[]visited,String ans,int weight)
         {
             if(src==dst)
             {   
@@ -58,7 +58,19 @@ public class AllPathCondition {
                 {
                     ceilthreshold=weight;
                 }
-
+                if(pq.size()<3)
+                {
+                    pq.add(new Pair(weight,ans));
+                }
+                else
+                {
+                    if(weight>pq.peek().weight)
+                    {
+                        pq.remove();
+                        pq.add(new Pair(weight,ans));
+                    }
+                }
+                return;
             }
             visited[src]=true;
             for(Edge edge:graph[src])
@@ -66,7 +78,7 @@ public class AllPathCondition {
                 if(visited[edge.nbr]==false)
                 {
                     weight += edge.wt;
-                    haspath(graph, edge.nbr, dst,visited,ans+String.valueOf(src),min,max,ceilthreshold,floorthreshold,weight);
+                    haspath(graph, edge.nbr, dst,visited,ans+String.valueOf(src),weight);
                     weight -= edge.wt;
                 } 
             }

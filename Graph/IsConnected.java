@@ -1,5 +1,5 @@
 import java.util.*;
-public class ConnectedComponent {
+public class IsConnected {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of vertices");
@@ -34,7 +34,14 @@ public class ConnectedComponent {
                 connected.add(isConnected(graph,i,visited,connections));
             }
         }
-        print(connected);  
+        if(connected.size()==1)
+        {
+            System.out.println("Connected");
+        }
+        else
+        {
+            System.out.println("Not Connected");
+        }
     }
 
         public static List<Integer> isConnected(ArrayList<Edge>[]graph,int vertices,boolean[]visited,List<Integer> connected)
@@ -53,20 +60,6 @@ public class ConnectedComponent {
             }
             return connected;
         }
-
-        public static void print (List<List<Integer>> connections)
-        {
-            for(List<Integer>connection: connections)
-            {
-                System.out.print("{");
-                for(int i = 0;i< connection.size();i++)
-                {
-                    System.out.print(connection.get(i));
-                }
-                System.out.print("},");
-            }
-        }
-
     public static class Edge 
     {
         int src;

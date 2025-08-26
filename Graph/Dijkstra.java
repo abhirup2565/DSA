@@ -1,5 +1,5 @@
 import java.util.*;
-public class Bipartite {
+public class Dijkstra {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of vertices");
@@ -24,64 +24,43 @@ public class Bipartite {
             graph[v1].add(new Edge(v1, v2, wt));
             graph[v2].add(new Edge(v2, v1, wt));
         }
-        //code starts here
-        int [] visited = new int[vertices];
-        Arrays.fill(visited, -1);
-        boolean graphBipartite = true;
-        for(int i=0;i<vertices;i++)
-        {
-            if(visited[i]==-1)
-            {
-                graphBipartite = isBipartite(graph,visited,i);
-                if(!graphBipartite)
-                {
-                    break;
-                }
-            }
-        }
-        System.out.println("It is Bipartite: "+graphBipartite);
-    }
-
-        public static boolean isBipartite(ArrayList<Edge>[] graph,int [] visited,int src)
-        {
-            ArrayDeque<Pair> queue = new ArrayDeque<>();
-            queue.add(new Pair(src, src+"",0));
-            while (queue.size() > 0) {
+        System.out.println("Enter Source");
+        int src = sc.nextInt();
+        PriorityQueue<Pair> queue = new PriorityQueue<>();
+        queue.add(new Pair(src, src+"",0));
+        boolean [] visited = new boolean[vertices];
+        while (queue.size() > 0) {
             //r m* w a*
-            Pair rem = queue.removeFirst();
-            if(visited[rem.vertex] == -1)
+            Pair rem = queue.remove();
+            if(visited[rem.vertex] == false)
             {
-                visited[rem.vertex] = rem.level;
-                System.out.println(rem.vertex +"@"+rem.path);
+                visited[rem.vertex] = true;
+                System.out.println(rem.vertex +" via "+rem.path+" @ "+rem.wsf);
                 for(Edge e: graph[rem.vertex])
                 {
-                    if(visited[e.nbr]==-1)
+                    if(visited[e.nbr]==false)
                     {
-                        queue.add(new Pair(e.nbr, rem.path+e.nbr,rem.level+1));
+                        queue.add(new Pair(e.nbr, rem.path+e.nbr,rem.wsf+e.wt));
                     }
                 }
             }
-            else
-            {
-                if(rem.level!=visited[rem.level])
-                {
-                    return false;
-                } 
-            }
         }
-        return true;
-        }
+    }
 
 
-    static class Pair{
+    static class Pair implements Comparable<Pair>{
         int vertex;
         String path;
-        int level;
-        Pair(int vertex,String path,int level)
+        int wsf;
+        Pair(int vertex,String path,int wsf)
         {
             this.vertex = vertex;
             this.path = path;
-            this.level = level;
+            this.wsf = wsf;
+        }
+        
+        public int compareTo(Dijkstra.Pair o) {
+            return this.wsf - o.wsf;
         }
     }
 

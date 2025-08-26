@@ -61,7 +61,6 @@ public class InfectionSpread {
         }
     }
 
-
     static class Pair{
         int vertex;
         String path;
@@ -73,7 +72,6 @@ public class InfectionSpread {
             this.level = level;
         }
     }
-
 
     public static class Edge 
     {

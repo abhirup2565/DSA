@@ -26,7 +26,7 @@ public class Constructor {
                 }
                 top.state++;
             }
-            if(top.state == 2)//right side
+            else if(top.state == 2)//right side
             {
                 index++;
                 if(arr[index]!=null)

@@ -47,7 +47,6 @@ public class IterativeDfs {
         }
     }
 
-
     static class Pair{
         int vertex;
         String path;
@@ -57,7 +56,6 @@ public class IterativeDfs {
             this.path = path;
         }
     }
-
 
     public static class Edge 
     {

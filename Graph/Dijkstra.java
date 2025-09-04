@@ -47,7 +47,6 @@ public class Dijkstra {
         }
     }
 
-
     static class Pair implements Comparable<Pair>{
         int vertex;
         String path;
@@ -63,7 +62,6 @@ public class Dijkstra {
             return this.wsf - o.wsf;
         }
     }
-
 
     public static class Edge 
     {

@@ -3,14 +3,31 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class LeftCloned{
+public class RevertLeftClone{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Integer [] arr = {50,25,12,null,null,37,30,null,null,40,null,null,75,62,60,null,null,78,null,null,87,null,null};
         Node root = construct(arr);
         print(root);
+        System.out.println("leftClone");
         Node leftClone = clone(root);
-        print(leftClone);        
+        print(leftClone);
+        System.out.println("original");
+        Node og = revert(leftClone);
+        print(og);        
+    }
+
+    public static Node revert(Node node)
+    {
+        if(node==null)
+        {
+            return null;
+        }
+        Node left = revert(node.left.left);
+        Node right = revert(node.right);
+        node.right=right;
+        node.left = left;
+        return node;
     }
 
     public static Node clone(Node node)

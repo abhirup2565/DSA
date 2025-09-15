@@ -10,12 +10,13 @@ public class DisplayTree{
 
     public static void display(Node node)
     {
-        System.out.print(node.data+"->");
+        String str = node.data+"->";
         for(Node c:node.children)
         {
-            System.out.print(c.data+", ");
+           str+=c.data+",";
         }
-        System.out.println();
+        str+=".";
+        System.out.println(str);
         for(Node c:node.children)
         {
             display(c);

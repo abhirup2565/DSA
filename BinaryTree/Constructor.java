@@ -16,7 +16,7 @@ public class Constructor {
                 index++;
                 if(arr[index]!=null)
                 {
-                    top.node.left = new Node(arr[index], root, root);
+                    top.node.left = new Node(arr[index], null, null);
                     Pair leftPair = new Pair(top.node.left, 1);
                     st.push(leftPair);
                 }
@@ -31,7 +31,7 @@ public class Constructor {
                 index++;
                 if(arr[index]!=null)
                 {
-                    top.node.right = new Node(arr[index], root, root);
+                    top.node.right = new Node(arr[index], null, null);
                     Pair rightPair = new Pair(top.node.right, 1);
                     st.push(rightPair);
                 }

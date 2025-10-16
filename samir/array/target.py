@@ -22,5 +22,28 @@ def target_indices():
         print("No solution found")
     else:
         print("indices: [",start,"],[",end,"]")
-
 target_indices()
+
+# using hasmap
+# def target_indices():
+#     nums = [2,7,11,15]
+#     target = 9
+    
+#     seen = {}  # Store {number: index}
+    
+#     for i, num in enumerate(nums):
+#         complement = target - num
+        
+#         # Check if complement exists
+#         if complement in seen:
+#             print(f"indices: [{seen[complement]}, {i}]")
+#             return [seen[complement], i]
+        
+#         # Store current number
+#         seen[num] = i
+    
+#     print("No solution found")
+
+# target_indices()
+
+

@@ -1,15 +1,17 @@
 import math
 def stocks():
     prices = [7,1,5,3,6,4]
-    high = [prices[len(prices)-1]]*len(prices)
+    high = [0] * len(prices)
+    high[-1] = prices[-1] 
 
-    for price in range(len(prices)-2,0,-1):
-        high[price] = max(prices[price],high[price+1])
+    # Build array of maximum prices to the right
+    for i in range(len(prices)-2, -1, -1):
+        high[i] = max(prices[i], high[i+1])
 
-    max_profit = -math.inf
-    for price in range(len(prices)):
-        profit = high[price]-prices[price]
-        max_profit = max(max_profit,profit)
+    max_profit = 0
+    for i in range(len(prices)):
+        profit = high[i] - prices[i]
+        max_profit = max(max_profit, profit)
 
     print(max_profit)
 

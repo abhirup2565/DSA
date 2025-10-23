@@ -17,6 +17,16 @@ def reverse(current, previous = None):
     current.next = previous
     return reverse(next_node, current)
           
+def reverse_iterative(head):
+    previous = None
+    current = head
+
+    while current:
+        next_node = current.next     
+        current.next = previous       
+        previous = current           
+        current = next_node          
+    return previous   
 
 # Example usage:
 link = LinkedList()

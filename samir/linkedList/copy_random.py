@@ -4,7 +4,7 @@ class Node:
         self.next = next
         self.random = random
 
-def copyRandomList(head: 'Node') -> 'Node':
+def copyRandomList(head: Node) -> Node:
     if not head:
         return None
 
